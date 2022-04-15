@@ -1,0 +1,57 @@
+.cardContainer {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: 1fr;
+    border: 2px solid #e2e2e2;
+    border-radius: 5px;
+}
+
+.descriptionText {
+    overflow-wrap: break-word;
+    width: 48rem;
+}
+
+.titleText {
+    overflow-wrap: break-word;
+    width: 48rem;
+}
+
+.cardDescription {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+}
+
+.cardAction {
+    display: flex;
+    flex-direction: column;
+    width: 6rem;
+    justify-content: space-between;
+    margin: 3rem auto 3rem auto;
+}
+
+.cardImage {
+    display: flex;
+}
+
+.jobName {
+    font-size: 14pt;
+    font-weight: bold;
+}
+
+.cardMainInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 2rem;
+}
+
+.cardHover:hover {
+    box-shadow: 3px 3px 4px 6px rgba(0,0,0,0.3);
+    transform: scale(1.03);
+}
+
+.infoColumn {
+    display: flex;
+    flex-direction: row;
+}

@@ -1,0 +1,80 @@
+<template>
+    <div class="jobViewContainer">
+        <div class="jobDataContainer">
+            <div class="jobDataItemName">
+                Name: 
+                <lightning-formatted-text value={job.Name} >
+                </lightning-formatted-text>
+            </div>
+            <div class="jobDataItem">            
+                <lightning-formatted-text value="Description: " >
+                </lightning-formatted-text>
+                </p>
+                <lightning-formatted-text value={job.Description__c} >
+                </lightning-formatted-text>
+            </div>
+            <div class="jobDataItem">
+                <lightning-formatted-text value="Skills: ">
+                </lightning-formatted-text>
+                </p>
+                <lightning-formatted-text value={job.Skills__c} >
+                </lightning-formatted-text>
+            </div>
+            <div class="jobDataItem">
+
+                <lightning-formatted-text value="Category: ">
+                </lightning-formatted-text>
+                </p>
+                <lightning-formatted-text value={job.Category__c} >
+                </lightning-formatted-text>
+            </div>
+            <div class="jobDataItem">
+                <lightning-formatted-text value="Experience Level: " >
+                </lightning-formatted-text>
+                </p>
+                <lightning-formatted-text value={job.ExperienceLevel__c} >
+                </lightning-formatted-text>
+            </div>
+        </div>
+
+        <div class="requestForm" if:true={isFreelancer}>
+            <div class="inputsContainers">
+                <lightning-input type="date" 
+                    value={job.DeadLine__c} 
+                    onchange={onChange} 
+                    name="DeadLine__c"
+                    label="DeadLine" 
+                    placeholder="your Deadline" 
+                    class="settingsInput" 
+                    required>
+                </lightning-input>
+
+                <lightning-input type="text" 
+                    value={job.FullPayment__c} 
+                    onchange={onChange} 
+                    name="FullPayment__c"
+                    label="Full Payment" 
+                    placeholder="your payment" 
+                    class="settingsInput" 
+                    required>
+                </lightning-input>
+
+                <lightning-textarea label="Enter some text" 
+                    value={job.Message__c} 
+                    onchange={onChange}
+                    name="Message__c" 
+                    class="settingsInput" 
+                    required>
+                </lightning-textarea>
+
+                <div>
+                    <a class="footerButton" 
+                        title="Create request" 
+                        onclick={handleRequest}>
+                        Create request
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

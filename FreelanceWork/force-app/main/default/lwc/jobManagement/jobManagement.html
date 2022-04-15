@@ -1,0 +1,257 @@
+<template>
+    <div class="jobManageContainer" if:true={isWaiting}>
+        <div class="jobManageHeader">
+            <div>
+                Job:
+                <lightning-formatted-text value={job.Name} >
+                </lightning-formatted-text>
+            </div>
+            <div class="statusContainer">
+                Status: 
+                <lightning-formatted-text class="statusText" value={job.Status__c} >
+                </lightning-formatted-text>
+            </div>
+        </div>
+        <div class="jobManageBody">
+            <lightning-tabset>
+                <lightning-tab class="tabContainer" label="Job Data"> 
+                    <div class="jobDataContainer">
+                        <div class="jobDataItemName">
+                            Name: 
+                            <lightning-formatted-text value={job.Name} >
+                            </lightning-formatted-text>
+                        </div>
+                        <div class="jobDataItem">            
+                            <lightning-formatted-text value="Description: " >
+                            </lightning-formatted-text>
+                            </p>
+                            <lightning-formatted-text value={job.Description__c} >
+                            </lightning-formatted-text>
+                        </div>
+                        <div class="jobDataItem">
+                            <lightning-formatted-text value="Skills: ">
+                            </lightning-formatted-text>
+                            </p>
+                            <lightning-formatted-text value={job.Skills__c} >
+                            </lightning-formatted-text>
+                        </div>
+                        <div class="jobDataItem">
+
+                            <lightning-formatted-text value="Category: ">
+                            </lightning-formatted-text>
+                            </p>
+                            <lightning-formatted-text value={job.Category__c} >
+                            </lightning-formatted-text>
+                        </div>
+                        <div class="jobDataItem">
+                            <lightning-formatted-text value="Experience Level: " >
+                            </lightning-formatted-text>
+                            </p>
+                            <lightning-formatted-text value={job.ExperienceLevel__c} >
+                            </lightning-formatted-text>
+                        </div>
+                    </div>
+                </lightning-tab>
+                <lightning-tab class="tabContainer" label="Requests"> 
+                    <template for:each={requests} for:item="request">
+                        <c-card-request onaccepted = {handleAccept} onrejected = {handleReject} request = {request} key = {request.Id}>
+                        </c-card-request>
+                    </template>
+                </lightning-tab>
+                <lightning-tab class="tabContainer" label="Freelancers">
+                    <div class="freelancersContainer">
+                        <div class="tableFrelancers slds-scrollable_y">
+                            <template for:each={freelancers} for:item="freelancer">
+                                <c-freelancer-card freelancer = {freelancer} key = {freelancer.Id}>
+                                </c-freelancer-card>
+                            </template>
+                        </div>
+
+                        <div class="freelancersButton">
+                            <a class="footerButton" 
+                                title="Start" 
+                                onclick={handleStart} 
+                            >Start
+                            </a>
+                        </div>
+
+                    </div>
+                </lightning-tab>
+            </lightning-tabset>
+        </div>
+        <div class="footerContainer">
+            <a class="footerButton" 
+                title="Back" 
+                onclick={handleBack} 
+                >Back
+            </a>
+        </div>
+    </div>
+
+    <div if:true={isInProcess}>
+        <div class="jobManageContainer">
+            <div class="jobManageHeader">
+                <div>
+                    Job:
+                    <lightning-formatted-text value={job.Name} >
+                    </lightning-formatted-text>
+                </div>
+                <div class="statusContainer">
+                    Status: 
+                    <lightning-formatted-text class="statusTextInProcess" value={job.Status__c} >
+                    </lightning-formatted-text>
+                </div>
+            </div>
+            <div class="jobManageBody">
+                <lightning-tabset>
+                    <lightning-tab class="tabContainer" label="Settings">
+                        <div class="settingButtons">
+                            <a class="footerButtonGoodClose" 
+                                title="Close" 
+                                onclick={handleGoodClose} 
+                                >Close 
+                            </a>
+                            <a class="footerButtonBadClose" 
+                                title="Close" 
+                                onclick={handleBadClose} 
+                                >Close 
+                            </a>
+                        </div>
+                    </lightning-tab>
+
+                    <lightning-tab class="tabContainer" label="Job Data"> 
+                        <div class="jobDataContainer">
+                            <div class="jobDataItemName">
+                                Name: 
+                                <lightning-formatted-text value={job.Name} >
+                                </lightning-formatted-text>
+                            </div>
+                            <div class="jobDataItem">            
+                                <lightning-formatted-text value="Description: " >
+                                </lightning-formatted-text>
+                                </p>
+                                <lightning-formatted-text value={job.Description__c} >
+                                </lightning-formatted-text>
+                            </div>
+                            <div class="jobDataItem">
+                                <lightning-formatted-text value="Skills: ">
+                                </lightning-formatted-text>
+                                </p>
+                                <lightning-formatted-text value={job.Skills__c} >
+                                </lightning-formatted-text>
+                            </div>
+                            <div class="jobDataItem">
+                                
+                                <lightning-formatted-text value="Category: ">
+                                </lightning-formatted-text>
+                                </p>
+                                <lightning-formatted-text value={job.Category__c} >
+                                </lightning-formatted-text>
+                            </div>
+                            <div class="jobDataItem">
+                                <lightning-formatted-text value="Experience Level: " >
+                                </lightning-formatted-text>
+                                </p>
+                                <lightning-formatted-text value={job.ExperienceLevel__c} >
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                    </lightning-tab>
+                    <lightning-tab class="tabContainer" label="Freelancers">
+                        <div class="freelancersContainer">
+                            <div class="tableFrelancers slds-scrollable_y">
+                                <template for:each={freelancers} for:item="freelancer">
+                                    <c-freelancer-card freelancer = {freelancer} key = {freelancer.Id}>
+                                    </c-freelancer-card>
+                                </template>
+                            </div>
+                        </div>
+                    </lightning-tab>
+                </lightning-tabset>
+            </div>
+            <div class="footerContainer">
+                <a class="footerButton" 
+                    title="Back" 
+                    onclick={handleBack} 
+                    >Back
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div if:true={isDone}>
+        <div class="jobManageContainer">
+            <div class="jobManageHeader">
+                <div>
+                    Job:
+                    <lightning-formatted-text value={job.Name} >
+                    </lightning-formatted-text>
+                </div>
+                <div class="statusContainer">
+                    Status: 
+                    <lightning-formatted-text class="statusTextDone" value={job.Status__c} >
+                    </lightning-formatted-text>
+                </div>
+            </div>
+            <div class="jobManageBody">
+                <lightning-tabset>
+                    <lightning-tab class="tabContainer" label="Job Data"> 
+                        <div class="jobDataContainer">
+                            <div class="jobDataItemName">
+                                Name: 
+                                <lightning-formatted-text value={job.Name} >
+                                </lightning-formatted-text>
+                            </div>
+                            <div class="jobDataItem">            
+                                <lightning-formatted-text value="Description: " >
+                                </lightning-formatted-text>
+                                </p>
+                                <lightning-formatted-text value={job.Description__c} >
+                                </lightning-formatted-text>
+                            </div>
+                            <div class="jobDataItem">
+                                <lightning-formatted-text value="Skills: ">
+                                </lightning-formatted-text>
+                                </p>
+                                <lightning-formatted-text value={job.Skills__c} >
+                                </lightning-formatted-text>
+                            </div>
+                            <div class="jobDataItem">
+                                
+                                <lightning-formatted-text value="Category: ">
+                                </lightning-formatted-text>
+                                </p>
+                                <lightning-formatted-text value={job.Category__c} >
+                                </lightning-formatted-text>
+                            </div>
+                            <div class="jobDataItem">
+                                <lightning-formatted-text value="Experience Level: " >
+                                </lightning-formatted-text>
+                                </p>
+                                <lightning-formatted-text value={job.ExperienceLevel__c} >
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                    </lightning-tab>
+                    <lightning-tab class="tabContainer" label="Freelancers">
+                        <div class="freelancersContainer">
+                            <div class="tableFrelancers slds-scrollable_y">
+                                <template for:each={freelancers} for:item="freelancer">
+                                    <c-freelancer-card freelancer = {freelancer} key = {freelancer.Id}>
+                                    </c-freelancer-card>
+                                </template>
+                            </div>
+                        </div>
+                    </lightning-tab>
+                </lightning-tabset>
+            </div>
+            <div class="footerContainer">
+                <a class="footerButton" 
+                    title="Back" 
+                    onclick={handleBack} 
+                    >Back
+                </a>
+            </div>
+        </div>
+    </div>
+</template>

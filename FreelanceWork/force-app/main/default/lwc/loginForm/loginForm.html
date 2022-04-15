@@ -1,0 +1,75 @@
+<template>
+
+    <div class="slds-form-element regForm">
+        <div class="headerContainer">
+            <lightning-formatted-text value="LOGIN" class = "regFormName"></lightning-formatted-text>
+        </div>
+
+        <div class="slds-form-element__control">
+
+            <lightning-input type="email" 
+                id = 'email'
+                value={user.email}
+                onchange={onChange}
+                name="email"
+                label="Email" 
+                placeholder="your email" 
+                required
+                class="regFormInput"
+            >
+            </lightning-input>
+
+        </div>
+
+        <div class="slds-form-element__control">
+
+            <lightning-input label="Password"
+                id = 'password'
+                value={user.password}
+                onchange={onChange}
+                name="password"
+                required
+                class="regFormInput"
+                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                message-when-pattern-mismatch="Password must contain 8 or more characters that are of at least one number, and one uppercase and lowercase letter."
+            >
+            </lightning-input>
+ 
+        </div>
+
+        <div class="slds-form-element__control">
+            
+            <lightning-radio-group label="Choose your role"
+                class="regFormInput"
+                id = 'role'
+                value={user.role}
+                onchange={onChange}
+                name="role"
+                options={options}
+                type="radio"
+                required
+            >
+            </lightning-radio-group>
+            <div class="errorMessage"> {message} </div>
+        </div>
+
+        <div class="footerContainer">
+
+            <div class="footerButtonsContainer">
+                <a class="footerButton" 
+                    title="Back"
+                    onclick={handleBack} 
+                >Back</a>
+
+                <a class="footerButton isDisabled" 
+                title="Login"
+                onclick={handleLogin} 
+                id="Login"
+                >Login</a>
+            </div>
+
+        </div>
+
+    </div>
+
+</template>

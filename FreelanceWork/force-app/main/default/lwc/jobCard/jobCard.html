@@ -1,0 +1,47 @@
+<template>
+        <div class="cardContainer cardHover">
+            <div class="cardDescription">
+                    <lightning-formatted-text value=Title: class = "jobName titleText slds-truncate">
+                    </lightning-formatted-text>
+                    <lightning-formatted-text value={job.Name} class = "jobName titleText slds-truncate">
+                    </lightning-formatted-text>
+
+                    <div class="infoColumn ">
+                        <lightning-formatted-text value="Skills: ">
+                        </lightning-formatted-text>
+                        <lightning-formatted-text value={job.Skills__c} >
+                        </lightning-formatted-text>
+    
+                        <lightning-formatted-text style="margin-left: 1rem;"  value="Category: ">
+                        </lightning-formatted-text>
+                        <lightning-formatted-text value={job.Category__c} >
+                        </lightning-formatted-text>
+                    </div>
+
+                    <lightning-formatted-text value="Description: ">
+                    </lightning-formatted-text>
+                    <lightning-formatted-text class = "descriptionText slds-truncate"  value={job.Description__c} >
+                    </lightning-formatted-text>
+            </div>
+            <div class="cardMainInfo">
+                <div>
+                    <lightning-formatted-text value="Hourly Rate: ">
+                    </lightning-formatted-text>
+                    <lightning-formatted-text value={job.HourlyRate__c}>
+                    </lightning-formatted-text>
+                </div>
+                <div>
+                    <lightning-formatted-text value="Customer: ">
+                    </lightning-formatted-text>
+                    <lightning-formatted-text value={job.Customer__r.Name}>
+                    </lightning-formatted-text>
+                </div>
+                <div>
+                    <lightning-formatted-text value="Experience Level: ">
+                    </lightning-formatted-text>
+                    <lightning-formatted-text value={job.ExperienceLevel__c}>
+                    </lightning-formatted-text>
+                </div>
+            </div>
+        </div>
+</template>

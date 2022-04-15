@@ -1,0 +1,24 @@
+<template>
+    <div class="cardContainer">
+        <div class="upContainer">
+            <div class="imgContainer">
+                <img class="imgFreelancer"
+                src={notification.ImageURL__c}>
+            </div>
+            <div class="dataContainer">
+                <lightning-formatted-text value={notification.Title__c} >
+                </lightning-formatted-text>
+                </p>
+                <lightning-formatted-text value={notification.Text__c} >
+                </lightning-formatted-text>
+            </div>
+        </div>
+        <div>
+            <a class="footerButtonReject" 
+                title="Delete" 
+                onclick={handleDelete}>
+                Delete
+            </a>
+        </div>
+    </div>
+</template>  

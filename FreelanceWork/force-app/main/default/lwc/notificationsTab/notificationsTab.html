@@ -1,0 +1,8 @@
+<template>
+    <div class="slds-scrollable_y notificationsTable">
+        <template for:each={notifications} for:item="notification">
+            <c-notification-card ondeleted = {handleDelete} notification = {notification} key = {notification.Id}>
+            </c-notification-card>
+        </template>
+    </div>
+</template>

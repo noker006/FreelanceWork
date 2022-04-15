@@ -1,0 +1,36 @@
+<template>
+    <div class="createJobFormContainer">
+        <div class="createJobForm">
+            <div class="formTitle">
+                Case
+            </div>
+            <div class="formInputs">
+                <lightning-input type="text" 
+                    value={case__c.Title__c}
+                    onchange={onChange} 
+                    name="Title__c"
+                    label="Case Title" 
+                    placeholder="Your title" 
+                    class="formInput"
+                    required>
+                </lightning-input>
+
+                <lightning-textarea label="Text" 
+                        value={case__c.Text__c} 
+                        onchange={onChange}
+                        name="Text__c" 
+                        class="formInput" 
+                        required>
+                </lightning-textarea>    
+            </div>
+
+            <div class="formFooter">
+                <a class="footerButton isDisabled" 
+                    title="Create case" 
+                    onclick={handleCreateCase}>
+                    Create case
+                </a>
+            </div>
+        </div>
+    </div>
+</template>

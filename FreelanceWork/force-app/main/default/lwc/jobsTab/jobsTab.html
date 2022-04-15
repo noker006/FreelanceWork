@@ -1,0 +1,63 @@
+<template>
+    <div class="tabJobsContainer">
+        <div class="tableContent">
+            <div class="tabTitleContainer">
+                <lightning-formatted-text class = "tabTitle"  
+                    value="All available work: ">
+                </lightning-formatted-text>
+            </div>
+            <div class="slds-scrollable_y jobsTable" onscroll={loadData}>
+                    <template for:each={jobs} for:item="job">
+                            <c-job-card onclick={handleJobCard} job = {job} key = {job.Id} label = {job.Id} >
+                            </c-job-card>
+                    </template>
+            </div>
+        </div>
+
+        <div class="filterContent">
+            <div class="filtersContainer">
+
+                <lightning-combobox name="ExperienceLevel__c"
+                    label="Experience Level"
+                    value={jobsFilters.ExperienceLevel__c}
+                    placeholder="Select"
+                    options={expLevelValues}
+                    onchange={onChange}
+                    class="filterInput">
+                </lightning-combobox>
+
+                <lightning-combobox name="Category__c"
+                    label="Category"
+                    value={jobsFilters.Category__c}
+                    placeholder="Select"
+                    options={categoryValues}
+                    onchange={onChange}
+                    class="filterInput">
+                </lightning-combobox>
+
+                <lightning-combobox name="Skills__c"
+                    label="Skills"
+                    value={jobsFilters.Skills__c}
+                    placeholder="Select"
+                    options={skillsValues}
+                    onchange={onChange}
+                    class="filterInput">
+                </lightning-combobox>
+    
+                <div>
+                    <a class="footerButton" 
+                        title="Search" 
+                        onclick={handleSearch}>
+                        Search
+                    </a>
+
+                    <a class="footerButton" 
+                        title="Clear" 
+                        onclick={handleClear}>
+                        Clear
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

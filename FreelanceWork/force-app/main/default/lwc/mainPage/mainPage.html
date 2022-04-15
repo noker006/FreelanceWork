@@ -1,0 +1,112 @@
+<template>
+    <div class="headerContainer">
+
+        <div class="leftHeaderItems">
+            <div class="headerItem">
+                <lightning-formatted-text class="logo" value="FreelanceWork" ></lightning-formatted-text>
+            </div>
+
+            <div class="headerItem">
+                <a class="headerButton" 
+                    title="Jobs" 
+                    onclick={handleJobs} 
+                    id="Jobs"
+                >Jobs</a>
+            </div>
+        </div>
+
+        <div class="rightHeaderItems">
+            <div class="headerItem" if:true={isFreelancer}>
+                <a class="headerButton" 
+                    title="My Jobs" 
+                    onclick={handleMyJobsFreelancer} 
+                    id="myJobsFreelancer"
+                >My Jobs</a>
+            </div>
+
+            <div class="headerItem" if:true={isCustomer}>
+                <a class="headerButton" 
+                    title="Create Job" 
+                    onclick={handleCreateJob} 
+                    id="createJobCustomer"
+                >Create Job</a>
+            </div>
+
+            <div class="headerItem" if:true={isCustomer}>
+                <a class="headerButton" 
+                    title="My Jobs" 
+                    onclick={handleMyJobsCustomer} 
+                    id="myJobsCustomer"
+                >My Jobs</a>
+            </div>
+
+            <div class="headerItem">
+                <a class="headerButton" 
+                    title="Notifications" 
+                    onclick={handleNotifications} 
+                    >Notifications {numberNotifications}
+                </a>
+            </div>
+
+            <div class="headerItem">
+                <a class="headerButton" 
+                    title="Profile" 
+                    onclick={handleProfile} 
+                    id="Profile"
+                >Profile</a>
+            </div>
+        </div>
+
+    </div>
+    <div class="bodyContainer">
+        <div if:true={showProfile}>            
+            <c-profile userid = {userId}></c-profile>
+        </div>
+
+        <div if:true={showJobsTab}>
+            <c-jobs-tab onselectedcard = {handleSelectedcard}  ></c-jobs-tab>
+        </div>
+
+        <div if:true={showMyJobsFreelancerTab}>
+            <c-my-jobs-freelancer></c-my-jobs-freelancer>
+        </div>
+
+        <div if:true={showMyJobsCustomerTab}>
+            <c-my-jobs-customer></c-my-jobs-customer>
+        </div>
+
+        <div if:true={showJobView}>
+            <c-job-view jobid = {jobIdForJobView}></c-job-view>
+        </div>
+
+        <div if:true={showCreateJob}>
+            <c-create-job></c-create-job>
+        </div>
+
+        <div if:true={showNotifications}>
+            <c-notifications-tab onnotificationschanged = {handleNotificationsChanged}></c-notifications-tab>
+        </div>
+
+        <div if:true={showCaseForm}>
+            <c-case-form></c-case-form>
+        </div>
+        
+        
+    </div>
+    <footer class="footer">
+        <div class="footerContainer">
+            <div class="leftFooterItems">
+
+            </div>
+
+            <div class="rightFooterItems">
+                <div class="footerItem">
+                    <a class="headerButton" 
+                        title="Case" 
+                        onclick={handleCase} 
+                    >Case</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</template>

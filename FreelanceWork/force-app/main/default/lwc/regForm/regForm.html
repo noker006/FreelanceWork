@@ -1,0 +1,129 @@
+<template>
+
+    <div class="slds-form-element regForm">
+        <div class="headerContainer">
+            <lightning-formatted-text value="REGISTRATION" class = "regFormName"></lightning-formatted-text>
+        </div>
+
+        <div class="slds-form-element__control">
+
+            <lightning-input type="text"
+                id = 'firstName'
+                value={user.firstName}
+                onchange={onChange}
+                name="firstName"
+                label="First Name" 
+                placeholder="your first name" 
+                required
+                class="regFormInput"
+                pattern="[A-Za-z]{1,32}"
+                message-when-pattern-mismatch="Only first name written in latin letters are allowed"
+            >
+            </lightning-input>
+ 
+        </div>
+
+        <div class="slds-form-element__control">
+
+            <lightning-input type="text" 
+                id = 'lastName'
+                value={user.lastName}
+                onchange={onChange}
+                name="lastName"
+                label="Last Name" 
+                placeholder="your last name" 
+                required
+                class="regFormInput"
+                pattern="[A-Za-z]{1,32}"
+                message-when-pattern-mismatch="Only last name written in latin letters are allowed"
+            >
+            </lightning-input>
+
+        </div>
+
+        <div class="slds-form-element__control">
+
+            <lightning-input type="text" 
+                id = 'userName'
+                value={user.userName}
+                onchange={onChange}
+                name="userName"
+                label="Username" 
+                placeholder="your username" 
+                required
+                class="regFormInput"
+                pattern="[A-Za-z]{1,32}"
+                message-when-pattern-mismatch="Only username written in latin letters are allowed"
+            >
+            </lightning-input>
+
+        </div>
+
+        <div class="slds-form-element__control">
+
+            <lightning-input type="email" 
+                id = 'email'
+                value={user.email}
+                onchange={onChange}
+                name="email"
+                label="Email" 
+                placeholder="your email" 
+                required
+                class="regFormInput"
+            >
+            </lightning-input>
+
+        </div>
+
+        <div class="slds-form-element__control">
+
+            <lightning-input label="Password"
+                id = 'password'
+                value={user.password}
+                onchange={onChange}
+                name="password"
+                required
+                class="regFormInput"
+                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                message-when-pattern-mismatch="Password must contain 8 or more characters that are of at least one number, and one uppercase and lowercase letter."
+            >
+            </lightning-input>
+ 
+        </div>
+
+        <div class="slds-form-element__control">
+            
+            <lightning-radio-group label="Choose your role"
+                class="regFormInput"
+                id = 'role'
+                value={user.role}
+                onchange={onChange}
+                name="role"
+                options={options}
+                type="radio"
+                required
+            >
+            </lightning-radio-group>
+        
+        </div>
+
+        <div class="footerContainer">
+
+            <div class="footerButtonsContainer">
+                <a class="footerButton" 
+                    title="Back"
+                    onclick={handleBack} 
+                >Back</a>
+
+                <a class="footerButton isDisabled" 
+                title="Register"
+                onclick={handleRegister} 
+                id="register"
+                >Register</a>
+            </div>
+
+        </div>
+
+    </div>
+
+</template>

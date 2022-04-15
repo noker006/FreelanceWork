@@ -1,0 +1,44 @@
+<template>
+    <div class="cardContainer">
+        <div class="upContainer">
+            <div class="imgContainer">
+                <img class="imgFreelancer"
+                src={request.Freelancer__r.ImageURL__c}>
+            </div>
+            <div class="dataContainer">
+                <lightning-formatted-text class="freelancerName" value={request.Freelancer__r.Name} >
+                </lightning-formatted-text>
+                </p>
+                $
+                <lightning-formatted-number value={request.FullPayment__c} 
+                    maximum-fraction-digits="2">
+                </lightning-formatted-number>
+                <lightning-formatted-number value={request.HourlyRate__c} 
+                    maximum-fraction-digits="2">
+                </lightning-formatted-number>
+                , DeadLine: 
+                <lightning-formatted-text value={request.DeadLine__c} >
+                </lightning-formatted-text>
+            </div>
+        </div>
+        <div class="downContainer">
+            <div class="messageContainer">
+                <lightning-formatted-text value={request.Message__c} >
+                </lightning-formatted-text>
+            </div>
+            <div class="buttonsContainer">
+                <a class="footerButtonAccept" 
+                    title="Accept" 
+                    onclick={handleAccept}>
+                    Accept
+                </a>
+
+                <a class="footerButtonReject" 
+                    title="Reject" 
+                    onclick={handleReject}>
+                    Reject
+                </a>
+            </div>
+        </div>
+    </div>
+</template>

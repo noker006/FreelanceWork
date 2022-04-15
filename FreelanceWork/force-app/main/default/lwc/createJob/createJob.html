@@ -1,0 +1,117 @@
+<template>
+    <div class="createJobFormContainer">
+        <div class="createJobForm">
+            <div class="formTitle">
+                Create Job
+            </div>
+            <div class="formInputs">
+                <lightning-combobox name="Category__c"
+                    label="Category"
+                    value={job.Category__c}
+                    placeholder="Select"
+                    options={categoryValues}
+                    onchange={onChange}
+                    class="formInput">
+                </lightning-combobox>
+
+                <lightning-textarea label="Description" 
+                        value={job.Description__c} 
+                        onchange={onChange}
+                        name="Description__c" 
+                        class="formInput" 
+                        required>
+                </lightning-textarea>    
+
+                <lightning-combobox name="Duration__c"
+                    label="Duration"
+                    value={job.Duration__c}
+                    placeholder="Select"
+                    options={durationValues}
+                    onchange={onChange}
+                    class="formInput">
+                </lightning-combobox>
+
+
+                <lightning-combobox name="ExperienceLevel__c"
+                    label="Experience Level"
+                    value={job.ExperienceLevel__c}
+                    placeholder="Select"
+                    options={expLevelValues}
+                    onchange={onChange}
+                    class="formInput">
+                </lightning-combobox>
+
+                <lightning-radio-group name="radioGroup"
+                    label="Choose payment type"
+                    options={paymentTypeOptions}
+                    value={paymentTypeValue}
+                    onchange={onChangeRadioGroup} 
+                    type="radio"
+                    class="formInput">
+                </lightning-radio-group>
+                
+                <div  if:true={isFullPayment}>
+                    <lightning-input type="number" 
+                            value={job.FullPayment__c} 
+                            onchange={onChange} 
+                            name="FullPayment__c"
+                            label="Full Payment" 
+                            placeholder="Your payment" 
+                            class="formInput" 
+                            required>
+                    </lightning-input>
+                </div>
+
+                <div  if:true={isHourlyRate}>
+                    <lightning-input type="text" 
+                        value={job.HourlyRate__c} 
+                        onchange={onChange} 
+                        name="HourlyRate__c"
+                        label="Hourly Rate" 
+                        placeholder="Your hourly rate" 
+                        class="formInput"
+                        required>
+                    </lightning-input>
+                </div>
+
+                <lightning-input type="text" 
+                    value={job.Name} 
+                    onchange={onChange} 
+                    name="Name"
+                    label="Job name" 
+                    placeholder="Your job name" 
+                    class="formInput"
+                    required>
+                </lightning-input>
+                
+                <lightning-card title="Select Skills" class="formInput">
+                    <div class="slds-p-around_small">
+                        <lightning-dual-listbox name="skills"
+                                                label="Select Skills"
+                                                source-label="Available"
+                                                selected-label="Selected"
+                                                field-level-help="Select skills"
+                                                options={lstOptions}
+                                                onchange={handleMultyPicklistChange}></lightning-dual-listbox>
+                                                <br/>
+                        <template if:true={lstSelected}>
+                            <strong>You Selected: </strong>
+                            <template for:each={lstSelected} for:item="sel">
+                                <p key={sel}>{sel}</p>
+                            </template>
+                        </template>
+                    </div>
+                </lightning-card>
+                
+            </div>
+
+            <div class="formFooter">
+                <a class="footerButton" 
+                    title="Create job" 
+                    onclick={handleCreateJob}>
+                    Create job
+                </a>
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,47 @@
+<template>
+    <div class="homePageHeader">
+
+        <div class="leftHeaderItems">
+                <div class="headerItem">
+                    <lightning-formatted-text class="logo" value="FreelanceWork" ></lightning-formatted-text>
+                </div>
+
+                <div class="headerItem">
+                    <a class="headerButton" 
+                        title="Jobs" 
+                        onclick={handleJobs} 
+                        id="Jobs"
+                    >Jobs</a>
+                </div>
+        </div>
+
+        <div class="rightHeaderItems">
+                <div class="headerItem">
+                    <a class="headerButton" 
+                        title="Login" 
+                        onclick={handleLogin}>
+                        Login
+                    </a>
+                </div>
+
+                <div class="headerItem">
+                    <a class="headerButton isDisabled" 
+                        title="Register" 
+                        onclick={handleRegister} 
+                        id="register">
+                        Register
+                    </a>
+                </div>
+        </div>
+    </div>
+    
+    <div class="bodyContainer">
+        <div if:true={showJobsTab}>
+            <c-jobs-tab onselectedcard = {handleSelectedcard}  ></c-jobs-tab>
+        </div>
+
+        <div if:true={showJobView}>
+            <c-job-view jobid = {jobIdForJobView}></c-job-view>
+        </div>
+    </div>
+</template>

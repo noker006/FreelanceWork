@@ -1,0 +1,133 @@
+<template>
+    <div class="profileMainContent">
+        <div>
+            <img class="profileImg"
+                src={user.ImageURL__c}>
+        </div>
+        <div class="profileData">
+            <div class="profileName">
+                <p>
+                    <lightning-formatted-text value={user.Name}>
+                    </lightning-formatted-text>
+                </p>
+                <p>
+                    <lightning-formatted-text value="Username: ">
+                    </lightning-formatted-text>
+
+                    <lightning-formatted-text value={user.Username__c}>
+                    </lightning-formatted-text>
+                </p>
+            </div>
+
+            <div class="profileInfo">
+                <p>
+                    <lightning-formatted-text class="outputData" 
+                        value="Email: ">
+                    </lightning-formatted-text>
+
+                    <lightning-formatted-email class="outputData" 
+                        value={user.Email__c}>
+                    </lightning-formatted-email>
+                </p>
+                <p>
+                    <lightning-formatted-text class="outputData" 
+                        value="Created Date: ">
+                    </lightning-formatted-text>
+
+                    <lightning-formatted-date-time class="outputData" 
+                        value={user.CreatedDate} 
+                        year="2-digit"
+                        month="short" 
+                        day="2-digit"
+                        hour="numeric" 
+                        weekday="long" 
+                        era="short">
+                    </lightning-formatted-date-time>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div>
+        <lightning-tabset>
+            <lightning-tab label="Settings">
+                <div class="inputsContainers">
+                    <lightning-input type="text" 
+                        id='Name' 
+                        value={user.Name} 
+                        onchange={onChange} 
+                        name="Name"
+                        label="Name" 
+                        placeholder="your Name" 
+                        class="settingsInput" 
+                        required>
+                    </lightning-input>
+
+                    <lightning-input type="email" 
+                        id='email' 
+                        value={user.Email__c} 
+                        onchange={onChange} 
+                        name="Email__c"
+                        label="Email" 
+                        placeholder="your email" 
+                        class="settingsInput" 
+                        required>
+                    </lightning-input>
+
+                    <lightning-input label="Password" 
+                        id='password' 
+                        value={user.Password__c} 
+                        onchange={onChange}
+                        name="Password__c" 
+                        class="settingsInput" 
+                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                        message-when-pattern-mismatch="Password must contain 8 or more characters that are of at least one number, and one uppercase and lowercase letter."
+                        required>
+                    </lightning-input>
+
+                    <lightning-input type="text" 
+                        id='imageURL' 
+                        value={user.ImageURL__c} 
+                        onchange={onChange} 
+                        name="ImageURL__c"
+                        label="Image URL" 
+                        placeholder="your image URL" 
+                        class="settingsInput" 
+                        required>
+                    </lightning-input>
+
+                    <div>
+                        <a class="footerButton" 
+                            title="change" 
+                            onclick={handleChange}>
+                            Сhange
+                        </a>
+                    </div>
+                </div>
+            </lightning-tab>
+
+            <lightning-tab label="All User Info">
+                <div class="allUserInfoTab">
+                    <lightning-formatted-text class="outputData" value="Email: "></lightning-formatted-text>
+                    <lightning-formatted-text class="outputData" value={user.Email__c}></lightning-formatted-text>
+
+                    </p>
+                    <lightning-formatted-text class="outputData" value="Name: "></lightning-formatted-text>
+                    <lightning-formatted-text class="outputData" value={user.Name}></lightning-formatted-text>
+
+                    </p>
+                    <lightning-formatted-text class="outputData" value="Password: "></lightning-formatted-text>
+                    <lightning-formatted-text class="outputData" value={user.Password__c}></lightning-formatted-text>
+
+                    </p>
+                    <lightning-formatted-text class="outputData" value="Username: "></lightning-formatted-text>
+                    <lightning-formatted-text class="outputData" value={user.Username__c}></lightning-formatted-text>
+
+                    </p>
+                    <lightning-formatted-text class="outputData" value="Created Date: "></lightning-formatted-text>
+                    <lightning-formatted-date-time class="outputData" value={user.CreatedDate} year="2-digit"
+                        month="short" day="2-digit" hour="numeric" weekday="long" era="short"></lightning-formatted-date-time>
+                </div>
+            </lightning-tab>
+        </lightning-tabset>
+    </div>
+</template>

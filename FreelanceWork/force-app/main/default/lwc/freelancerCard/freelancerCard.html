@@ -1,0 +1,25 @@
+<template>
+    <div class="cardContainer">
+        <div class="upContainer">
+            <div class="imgContainer">
+                <img class="imgFreelancer"
+                src={freelancer.ImageURL__c}>
+            </div>
+            <div class="dataContainer">
+                <lightning-formatted-text value={freelancer.Name} >
+                </lightning-formatted-text>
+                [
+                <lightning-formatted-text value={freelancer.Username__c} >
+                </lightning-formatted-text>
+                ]
+                </p>
+                Rating: 
+                <lightning-formatted-text value={freelancer.Rating__c} >
+                </lightning-formatted-text>  
+                </p>
+                <lightning-formatted-text value={freelancer.Email__c} >
+                </lightning-formatted-text>    
+            </div>
+        </div>
+    </div>
+</template>
